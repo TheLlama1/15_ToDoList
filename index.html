@@ -16,7 +16,7 @@
           <h1 class="text-xl font-bold">Todo List App</h1>
         </div>
         <div class="p-6">
-          <ol id="todo-list" class="list-disc list-inside"></ol>
+          <ol id="todo-list" class="list-inside"></ol>
           <div class="flex mt-4">
             <input
               type="text"
@@ -26,7 +26,7 @@
             />
             <button
               onclick="addTask()"
-              class="btn bg-purple-500 text-white px-4 py-2 rounded-r-md"
+              class="btn bg-red-700 text-black px-4 py-2 rounded-r-md"
             >
               Add
             </button>
@@ -41,10 +41,26 @@
         if (input.trim() !== "") {
           var list = document.getElementById("todo-list");
           var listItem = document.createElement("li");
-          listItem.innerHTML = `
-          <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-500" />
-          <label class="ml-2">${input}</label>
-        `;
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.classList.add(
+            "form-checkbox",
+            "h-4",
+            "w-4",
+            "text-blue-500"
+          );
+          checkbox.addEventListener("change", function () {
+            if (this.checked) {
+              label.classList.add("line-through");
+            } else {
+              label.classList.remove("line-through");
+            }
+          });
+          var label = document.createElement("label");
+          label.classList.add("ml-2");
+          label.textContent = input;
+          listItem.appendChild(checkbox);
+          listItem.appendChild(label);
           list.appendChild(listItem);
           document.getElementById("new-task").value = "";
         }
