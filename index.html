@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto py-8 max-w-md">
+      <div class="bg-white rounded-lg shadow-md">
+        <div class="px-6 py-4 border-b">
+          <h1 class="text-xl font-bold">Todo List App</h1>
+        </div>
+        <div class="p-6">
+          <ol id="todo-list" class="list-disc list-inside"></ol>
+          <div class="flex mt-4">
+            <input
+              type="text"
+              id="new-task"
+              placeholder="Add a new task..."
+              class="flex-grow border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:border-blue-400"
+            />
+            <button
+              onclick="addTask()"
+              class="btn bg-purple-500 text-white px-4 py-2 rounded-r-md"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function addTask() {
+        var input = document.getElementById("new-task").value;
+        if (input.trim() !== "") {
+          var list = document.getElementById("todo-list");
+          var listItem = document.createElement("li");
+          listItem.innerHTML = `
+          <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-500" />
+          <label class="ml-2">${input}</label>
+        `;
+          list.appendChild(listItem);
+          document.getElementById("new-task").value = "";
+        }
+      }
+    </script>
+  </body>
+</html>
