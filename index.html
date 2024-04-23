@@ -9,8 +9,41 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="bg-red-300">
+    <div class="bg-red-300 pt-5 flex justify-end max-w-6xl mx-auto relative">
+      <!-- Clickable Icon -->
+      <i
+        id="clickable-icon"
+        class="fa-solid fa-user bg-white p-2 rounded-lg text-black text-3xl cursor-pointer"
+      ></i>
+
+      <div
+        id="menu"
+        class="hidden absolute right-0 mt-12 w-48 bg-white border border-gray-300 shadow-lg rounded-lg"
+      >
+        <ul>
+          <li class="px-4 py-2 hover:bg-gray-400 rounded-lg cursor-pointer">
+            Account
+          </li>
+
+          <a href="login.html"
+            ><li
+              class="px-4 py-2 hover:bg-gray-400 text-red-600 rounded-lg cursor-pointer"
+            >
+              Log out
+            </li></a
+          >
+        </ul>
+      </div>
+    </div>
     <div class="container mx-auto py-8 max-w-md">
       <div class="bg-white rounded-lg shadow-md">
         <div class="px-6 py-4 border-b">
@@ -67,6 +100,12 @@
           document.getElementById("new-task").value = "";
         }
       }
+      var icon = document.getElementById("clickable-icon");
+      var menu = document.getElementById("menu");
+
+      icon.addEventListener("click", function () {
+        menu.classList.toggle("hidden");
+      });
     </script>
   </body>
 </html>

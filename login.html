@@ -3,50 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List</title>
+    <title>Log in</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-100">
-    <div class="container mx-auto py-4">
-      <div class="bg-white rounded-lg shadow-md">
-        <div class="px-4 py-2 border-b">
-          <h1 class="text-lg font-bold">Todo List App</h1>
-        </div>
-        <div class="p-4">
-          <ol id="todo-list" class="list-disc list-inside"></ol>
-          <div class="flex mt-2">
-            <input
-              type="text"
-              id="new-task"
-              placeholder="Add a new task..."
-              class="flex-grow border border-gray-300 rounded-l-md px-2 py-1 focus:outline-none focus:border-blue-400"
-            />
-            <button
-              onclick="addTask()"
-              class="btn bg-blue-500 text-white px-2 py-1 rounded-r-md"
+  <body class="bg-red-300">
+    <div class="flex justify-center items-center h-screen">
+      <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 w-96">
+        <h2 class="text-2xl mb-4">Log in</h2>
+        <form action="index.html">
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="email"
+              >Enter your email:</label
             >
-              Add
-            </button>
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="text"
+              name="email"
+              required
+            />
+            <!-- Error message container -->
+            <div id="emailError" class="text-red-500 text-sm mt-1 hidden">
+              Please enter a valid email address!
+            </div>
           </div>
-        </div>
+          <div class="mb-4">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="username"
+              >Enter your username:</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="username"
+              type="text"
+              name="username"
+              required
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2"
+              for="password"
+              >Enter your password:</label
+            >
+            <input
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              name="password"
+              required
+            />
+          </div>
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            onclick="checkEmail()"
+          >
+            <a href="index.html">Log in</a>
+          </button>
+          <div class="mt-4">
+            <p class="text-sm">
+              <a class="text-blue-500 hover:text-blue-700" href="register.html"
+                >Don't have an account?</a
+              >
+            </p>
+          </div>
+        </form>
       </div>
     </div>
-
     <script>
-      function addTask() {
-        var input = document.getElementById("new-task").value;
-        if (input.trim() !== "") {
-          var list = document.getElementById("todo-list");
-          var listItem = document.createElement("li");
-          listItem.innerHTML = `
-          <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-500" />
-          <label class="ml-2">${input}</label>
-        `;
-          list.appendChild(listItem);
-          document.getElementById("new-task").value = "";
+      // Function to check if the email input contains "@"
+      function checkEmail() {
+        const emailInput = document.getElementById("email");
+        const emailValue = emailInput.value;
+        const emailError = document.getElementById("emailError");
+        if (emailValue.includes("@")) {
+          // Hide error message if email is valid
+          emailError.classList.add("hidden");
+        } else {
+          // Show error message if email is invalid
+          emailError.classList.remove("hidden");
         }
       }
     </script>
